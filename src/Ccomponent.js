@@ -3,39 +3,41 @@ import React, { Component } from "react";
 export default class Ccomponent extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      count: 0
+      input: '',
+      items: []
     };
 
-    this.increment = this.increment.bind(this);
-    this.decrement = this.decrement.bind(this);
-    this.reset = this.reset.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  increment() {
+  handleChange(event) {
     this.setState({
-      count: this.state.count + 1
-    });
+      input: event.target.value
+    })
   }
-  decrement() {
+  handleSubmit(event) {
+    event.preventDefault();
     this.setState({
-      count: this.state.count - 1
-    });
-  }
-  reset() {
-    this.setState({
-      count: 0
-    });
+      input: this.state.input,
+      items: [...this.state.items, this.state.input]
+    })
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.increment}>increment</button>
-        <button onClick={this.decrement}>decrement</button>
-        <button onClick={this.reset}>reset</button>
-        <h1>Current: {this.state.count}</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input value={this.state.input} onChange={this.handleChange}/>
+          <button type={'submit'}>Submit</button>
+        </form>
+
+        <ul>
+          {this.state.items.map((item, idx) => {
+            return <li key={idx}>{item}</li>
+          })}
+        </ul>
       </div>
     )
   }
