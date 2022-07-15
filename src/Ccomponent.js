@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import './stylesNew.css';
+import Button from "@material-ui/core/Button";
 
 export default class Ccomponent extends Component {
   constructor(props) {
@@ -28,6 +30,13 @@ export default class Ccomponent extends Component {
   render() {
     return (
       <div>
+        <h1 className={'hello'}>Hello React</h1>
+        <Button variant="contained" color="primary">
+          Primary
+        </Button>
+        <Button variant="contained" color="secondary">
+          Secondary
+        </Button>
         <form onSubmit={this.handleSubmit}>
           <input value={this.state.input} onChange={this.handleChange}/>
           <button type={'submit'}>Submit</button>
