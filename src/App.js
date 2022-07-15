@@ -1,13 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import Fcomponent from "./Fcomponent";
 import Ccomponent from "./Ccomponent";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Fcomponent name={'Alex'}/>
         <Ccomponent name={'Bogdan'}/>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
