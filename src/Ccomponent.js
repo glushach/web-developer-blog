@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import './stylesNew.css';
 import Fcomponent from "./Fcomponent";
-import Fncomponent from "./Fncomponent";
 
 export default class Ccomponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: ''
+      name: "Button not presses"
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.updateData = this.updateData.bind(this);
   }
-  handleChange(event) {
+  updateData = (value) => {
     this.setState({
-      inputValue: event.target.value
+      name: value
     })
   }
 
@@ -21,10 +20,8 @@ export default class Ccomponent extends Component {
    return (
      <div>
        {/* pass data from parent to children component*/}
-       <Fcomponent
-       input={this.state.inputValue}
-       handleChange={this.handleChange}/>
-       <Fncomponent input={this.state.inputValue}/>
+       <p>State: {this.state.name}</p>
+       <Fcomponent updateData={this.updateData}/>
      </div>
    )
   }
