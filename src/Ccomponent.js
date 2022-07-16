@@ -1,53 +1,53 @@
 import React, { Component } from "react";
 import './stylesNew.css';
-import Button from "@material-ui/core/Button";
 
 export default class Ccomponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      items: []
+      class: 'off',
+      label: 'Press'
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.press = this.press.bind(this);
+
+    /*Initialization is faze which component starting life. Set props end state*/
+    console.log('Constructor')
   }
 
-  handleChange(event) {
-    this.setState({
-      input: event.target.value
-    })
-  }
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState({
-      input: this.state.input,
-      items: [...this.state.items, this.state.input]
-    })
+  componentDidMount() {
+    /*Component is mounting in DOM*/
+    console.log('componentDidMount()');
   }
 
+  /*
+  shouldComponentUpdate(), componentDidUpdate()
+  State is changing many times. Click, input text, submit ets
+  */
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    /* Must component update or not*/
+    console.log('shouldComponentUpdate()')
+    return true;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    /*Call after repeat rendering*/
+    console.log('componentDidUpdate()')
+  }
+
+  componentWillUnmount() {
+    /* Call after unmount component it is delete component from DOM
+      END lifecycle of component
+    */
+  }
+
+  press() {
+    let className = (this.state.class === 'off') ? 'on' : 'off';
+    this.setState({class: className})
+  }
   render() {
-    return (
-      <div>
-        <h1 className={'hello'}>Hello React</h1>
-        <Button variant="contained" color="primary">
-          Primary
-        </Button>
-        <Button variant="contained" color="secondary">
-          Secondary
-        </Button>
-        <form onSubmit={this.handleSubmit}>
-          <input value={this.state.input} onChange={this.handleChange}/>
-          <button type={'submit'}>Submit</button>
-        </form>
-
-        <ul>
-          {this.state.items.map((item, idx) => {
-            return <li key={idx}>{item}</li>
-          })}
-        </ul>
-      </div>
-    )
+    console.log('render()');
+    return <button onClick={this.press} className={this.state.class}>{this.state.label}</button>
   }
+
 }
