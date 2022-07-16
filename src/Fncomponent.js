@@ -11,8 +11,8 @@ export default class Fcomponent extends Component {
   render() {
     return (
       <div>
-        <h1>Input:</h1>
-        <input value={this.props.input} onChange={this.props.handleChange}/>
+        <h1>Render input</h1>
+        <p>{this.props.input}</p>
       </div>
     )
   }
